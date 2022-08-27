@@ -9,6 +9,8 @@
 #"birthday3": "1997-01-03",
  "love_date": "2022-08-03",
  "Whether_Eng": "", 
+ # 和风天气apikey
+"weather_key": "5007f3a6d20044fea0e7be0ef663d8bc",
 "Whether_caihongpi":"9b63f58553de47aa08790beccc60657c",
  "Whether_lizhi":"9b63f58553de47aa08790beccc60657c",
  "Whether_tip": "9b63f58553de47aa08790beccc60657c", 
