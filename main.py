@@ -68,62 +68,55 @@ def get_birthday(birthday, year, today):
 
 
 
-def get_weather(region):
+def get_weather(province, city):
+    # 城市id
+    try:
+        city_id = cityinfo.cityInfo[province][city]["AREAID"]
+    except KeyError:
+        print("推送消息失败，请检查省份或城市是否正确")
+        os.system("pause")
+        sys.exit(1)
+    # city_id = 101280101
+    # 毫秒级时间戳
+    t = (int(round(time() * 1000)))
     headers = {
+        "Referer": "http://www.weather.com.cn/weather1d/{}.shtml".format(city_id),
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
-    key = config["weather_key"]
-    region_url = "https://geoapi.qweather.com/v2/city/lookup?location={}&key={}".format(region, key)
-    response = get(region_url, headers=headers).json()
-    if response["code"] == "404":
-        print("推送消息失败，请检查地区名是否有误！")
-        os.system("pause")
-        sys.exit(1)
-    elif response["code"] == "401":
-        print("推送消息失败，请检查和风天气key是否正确！")
-        os.system("pause")
-        sys.exit(1)
-    else:
-        # 获取地区的location--id
-        location_id = response["location"][0]["id"]
-    weather_url = "https://devapi.qweather.com/v7/weather/now?location={}&key={}".format(location_id, key)
-    response = get(weather_url, headers=headers).json()
+    url = "http://d1.weather.com.cn/dingzhi/{}.html?_={}".format(city_id, t)
+    response = get(url, headers=headers)
+    response.encoding = "utf-8"
+    response_data = response.text.split(";")[0].split("=")[-1]
+    response_json = eval(response_data)
+    # print(response_json)
+    weatherinfo = response_json["weatherinfo"]
     # 天气
-    weather = response["now"]["text"]
-    # 当前温度
-    temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
-    # 风向
-    wind_dir = response["now"]["windDir"]
-    # 获取逐日天气预报
-    url = "https://devapi.qweather.com/v7/weather/3d?location={}&key={}".format(location_id, key)
-    response = get(url, headers=headers).json()
+    weather = weatherinfo["weather"]
     # 最高气温
-    max_temp = response["daily"][0]["tempMax"] + u"\N{DEGREE SIGN}" + "C"
+    temp = weatherinfo["temp"]
     # 最低气温
-    min_temp = response["daily"][0]["tempMin"] + u"\N{DEGREE SIGN}" + "C"
-    # 日出时间
-    sunrise = response["daily"][0]["sunrise"]
-    # 日落时间
-    sunset = response["daily"][0]["sunset"]
-    url = "https://devapi.qweather.com/v7/air/now?location={}&key={}".format(location_id, key)
-    response = get(url, headers=headers).json()
-    if response["code"] == "200":
-        # 空气质量
-        category = response["now"]["category"]
-        # pm2.5
-        pm2p5 = response["now"]["pm2p5"]
-    else:
-        # 国外城市获取不到数据
-        category = ""
-        pm2p5 = ""
-    id = random.randint(1, 16)
-    url = "https://devapi.qweather.com/v7/indices/1d?location={}&key={}&type={}".format(location_id, key, id)
-    response = get(url, headers=headers).json()
-    proposal = ""
-    if response["code"] == "200":
-        proposal += response["daily"][0]["text"]
-    return weather, temp, max_temp, min_temp, wind_dir, sunrise, sunset, category, pm2p5, proposal
+    tempn = weatherinfo["tempn"]
+    return weather, temp, tempn
+
+
+
+#词霸每日一句
+def get_ciba():
+    if (Whether_Eng!=False):
+        try:
+            url = "http://open.iciba.com/dsapi/"
+            headers = {
+                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                            'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+            }
+            r = get(url, headers=headers)
+            note_en = r.json()["content"]
+            note_ch = r.json()["note"]
+            return (note_en,note_ch)
+        except:
+            return ("词霸API调取错误")
 
 
 
