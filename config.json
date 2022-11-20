@@ -1,6 +1,6 @@
 {"app_id":"wx3b34129069803064",
  "app_secret":"bf3ecc206ab320e7182490bb92ac5768", 
-"template_id":"0jlYAM-COR5k8wK0BMIqtzV8X0Wri72H83C8NQ9hR9U", 
+"template_id":"YXtWJ9KZrFuWVx5-DLY2cZngGNRGZvv7GMCWbCslVCA", 
 "user": ["oZAaw6oZMvI4pa5_AQyx6rYGC4Q0"],
  "province": "贵州", 
 "city": "贵阳", 
@@ -10,7 +10,7 @@
  "love_date": "2022-10-24",
  "Whether_Eng": "", 
  # 和风天气apikey
-"weather_key": "5007f3a6d20044fea0e7be0ef663d8bc",
+"weather_key":"5007f3a6d20044fea0e7be0ef663d8bc",
 "Whether_caihongpi":"9b63f58553de47aa08790beccc60657c",
  "Whether_lizhi":"9b63f58553de47aa08790beccc60657c",
  "Whether_tip": "9b63f58553de47aa08790beccc60657c", 
