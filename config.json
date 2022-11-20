@@ -1,13 +1,13 @@
 {"app_id": "wx3b34129069803064",
  "app_secret": "bf3ecc206ab320e7182490bb92ac5768", 
-"template_id": "7n7I98eVrd4rufdD1aEZV4wk9IU19mIb4KJv-z8UXUI", 
-"user": ["oZAaw6oZMvI4pa5_AQyx6rYGC4Q0","oZAaw6qfKrrZKHhKMZ22cMIUaMvw"],
+"template_id": "	tQQaSTL3YQV5bakkHCgg6B2Xv9tmrRITco4NY2QRmLc", 
+"user": ["oZAaw6oZMvI4pa5_AQyx6rYGC4Q0"],
  "province": "贵州", 
 "city": "贵阳", 
-"birthday1": "r1995-05-15",
+"birthday1": "r2001-01-09",
  #"birthday2": "", 
 #"birthday3": "1997-01-03",
- "love_date": "2022-08-03",
+ "love_date": "2022-10-24",
  "Whether_Eng": "", 
  # 和风天气apikey
 "weather_key": "5007f3a6d20044fea0e7be0ef663d8bc",
@@ -17,4 +17,4 @@
 "Whether_health":"9b63f58553de47aa08790beccc60657c", 
 "Whether_lucky":"9b63f58553de47aa08790beccc60657c",
  "tianxing_API": "9b63f58553de47aa08790beccc60657c", 
-"astro": "双子座"}
+"astro": "摩羯座"}
